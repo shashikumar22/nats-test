@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+<body>
+
+<div ng-app="natsApp" ng-controller="myCtrl"> 
+
+<button ng-click="callingnats()">NATS CALL</button>
+
+<h3>nats: {{natsdata}}</h3>
+
+</div>
+
+<script>
+var app = angular.module('natsApp', []);
+app.controller('myCtrl', function($scope, $http) {
+ $scope.callingnats=function(){	
+  $http.get("natscall").then(function(response) {
+  	console.log(response);
+      $scope.natsdata = response.data;
+  });
+ }
+});
+</script>
+
+</body>
+</html>
